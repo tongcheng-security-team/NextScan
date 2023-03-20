@@ -1,0 +1,6 @@
+go.mod
+.goreleaser.yaml
+publish
+.idea
+.DS_Store
+*.tar.gz

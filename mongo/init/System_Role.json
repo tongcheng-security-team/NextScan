@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5e36ddf74da8ad2e24fb5f51"},"roleName":"系统超级管理员","roleCode":"system_admin","desc":"系统超级管理员","createBy":"","updateBy":"","updateTime":{"$date":"2021-05-19T14:57:01.224Z"},"createTime":{"$date":"2021-05-19T07:33:51.228Z"}}

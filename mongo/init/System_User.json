@@ -1,0 +1,1 @@
+{"_id":{"$oid":"5db002504da8ad2e24d0052d"},"username":"admin","realname":"管理员","workNo":"00001","password":"b7a60e4969e9ebb8440e256d1e5d45b3","desc":"系统默认账户","avatar":"","sex":1,"phone":"18888888888","email":"nextscan@163.com","createBy":"","updateBy":"","updateTime":{"$date":"2023-02-14T08:21:15.22Z"},"createTime":{"$date":"2021-05-18T07:33:51.228Z"},"status":1}
