@@ -26,10 +26,8 @@
 
 ## 安装指南
 
-[![Mongodb 4.2.*](https://img.shields.io/badge/mongodb-4.2.*-blue.svg)](https://www.mongodb.com/download-center?jmp=nav)
-
-* [标准安装指南](http://next-scan.ly.com/install/binary/)
-* [Docker安装指南](http://next-scan.ly.com/install/docker/)
+* [标准安装指南](https://next-scan.ly.com/install/binary/)
+* [Docker安装指南](https://next-scan.ly.com/install/docker/)
 
 ⬇️[下载地址](https://github.com/tongcheng-security-team/NextScan/releases)
 
@@ -37,7 +35,7 @@
 
 **在使用之前，请务必阅读并同意 [免责声明](https://github.com/tongcheng-security-team/NextScan/blob/master/Disclaimer.md) 中的条款，否则请勿安装使用本工具。**
 
-🏠[使用文档](http://next-scan.ly.com/user-guide/start/)  
+🏠[使用文档](https://next-scan.ly.com/user-guide/start/)  
 
 ## 系统展示
 
