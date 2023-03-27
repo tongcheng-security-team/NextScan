@@ -55,7 +55,7 @@ services:
       exit 0;
       "
   web:
-    image: "lysec/ns-admin:v1.0.0"
+    image: "lysec/ns-admin:latest"
     ports:
      - "80:80"
     depends_on:
@@ -69,12 +69,12 @@ services:
 #      # 配置文件
 #    - ./conf.ini:/go/next-scan/conf.ini
   scan:
-    image: "lysec/ns-scan:v1.0.0"
+    image: "lysec/ns-scan:latest"
     depends_on:
       - web
     container_name: ns-scan
   craw:
-    image: "lysec/ns-craw:v1.0.0"
+    image: "lysec/ns-craw:latest"
     depends_on:
       - web
     container_name: ns-craw
