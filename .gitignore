@@ -4,3 +4,6 @@ publish
 .idea
 .DS_Store
 *.tar.gz
+*.go
+.gitgnore
+vendor

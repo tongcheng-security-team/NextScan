@@ -47,7 +47,8 @@ db.System_UserRole.insert([
 ]);
 
 
-db.Message_Template.insert([{
+db.Message_Template.insert([
+    {
     "_id": ObjectId("6310636a69b35a49e396ffe8"),
     "name": "黑盒扫描器任务完成提醒",
     "code": 2,
@@ -59,7 +60,7 @@ db.Message_Template.insert([{
     "createTime": ISODate("2022-09-01T07:46:50.913Z"),
     "enable": true,
     "subject": "黑盒扫描器任务完成"
-}, {
+},{
     "_id": ObjectId("63849d3169b35abc2d329504"),
     "name": "agent离线通知",
     "code": 1,
@@ -613,7 +614,7 @@ db.Engine_Category.insert([
     {
         "_id": ObjectId("63bfd22e69b35a192a416dc4"),
         "name": "其他",
-        "sortNo": 1.0,
+        "sortNo": 9.0,
         "pid": "63bfd0c069b35a18580fbf91",
         "advice": "其他",
         "riskDesc": "其他",
@@ -800,6 +801,16 @@ db.Engine_Category.insert([
         "updateBy": "5db002504da8ad2e24d0052d",
         "updateTime": ISODate("2023-01-12T09:26:06.901Z"),
         "createTime": ISODate("2023-01-12T09:26:06.901Z")
+    },
+    {
+        "_id": ObjectId("6444f06669b35a4909a6bb8a"),
+        "name": "表达式注入",
+        "pid": "63bfd0c069b35a18580fbf91",
+        "deleted": false,
+        "sortNo": 3.0,
+        "createBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2023-04-23T08:46:30.844Z"),
+        "createTime": ISODate("2023-04-23T08:46:30.844Z")
     }
 ]);
 
