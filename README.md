@@ -42,6 +42,8 @@
 
 ## 联系我们
 <figure>
+  <figcaption>官方群聊，欢迎进群交流</figcaption>
+  <img src="./images/wechat_group.jpg" width="200px" />
   <figcaption>加管理微信，拉你进群交流</figcaption>
   <img src="./images/wechat.jpg" width="200px" />
   <figcaption>同程安全应急响应中心-公众号</figcaption>
