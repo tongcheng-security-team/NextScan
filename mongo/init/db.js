@@ -6,6 +6,8 @@ db.createCollection("System_Role");
 db.createCollection("System_RoleMenu");
 db.createCollection("System_User");
 db.createCollection("System_UserRole");
+db.createCollection("Engine_Vul");
+db.Engine_Vul.createIndex({time: -1});
 db.System_Role.insert([
     {
         "_id": ObjectId("5e36ddf74da8ad2e24fb5f51"),
