@@ -8,6 +8,7 @@ db.createCollection("System_User");
 db.createCollection("System_UserRole");
 db.createCollection("Engine_Vul");
 db.Engine_Vul.createIndex({time: -1});
+db.Engine_Task.createIndex({groupId: 1, status: 1, _id: 1}, {backgroud: true});
 db.System_Role.insert([
     {
         "_id": ObjectId("5e36ddf74da8ad2e24fb5f51"),
@@ -51,66 +52,66 @@ db.System_UserRole.insert([
 
 db.Message_Template.insert([
     {
-    "_id": ObjectId("6310636a69b35a49e396ffe8"),
-    "name": "黑盒扫描器任务完成提醒",
-    "code": 2,
-    "type": 2,
-    "content": "<h3>Hi, ${userName} 您好!</h3>\n<div style=\"line-height: 30pt; font-size: 12pt;\">\n<p>您提交的黑盒漏洞扫描任务【${projectName}】已经完成，共发现 ${total} 漏洞，其中严重漏洞 ${critical} 个、 高危漏洞${high}个、中危漏洞${medium}个、低危${low}个。</p>\n<p>任务详情点击：${url}，请您尽快处理</p>\n</div>",
-    "createBy": "5db002504da8ad2e24d0052d",
-    "updateBy": "5db002504da8ad2e24d0052d",
-    "updateTime": ISODate("2023-02-16T10:59:48.833Z"),
-    "createTime": ISODate("2022-09-01T07:46:50.913Z"),
-    "enable": true,
-    "subject": "黑盒扫描器任务完成"
-},{
-    "_id": ObjectId("63849d3169b35abc2d329504"),
-    "name": "agent离线通知",
-    "code": 1,
-    "type": 3,
-    "content": "【黑盒漏洞扫描系统-节点离线告警】\n\n节点IP：${ip}\n节点类型：${type}\n节点环境：${group}\n离线时间：${time}\n",
-    "createBy": "5db002504da8ad2e24d0052d",
-    "updateBy": "5db002504da8ad2e24d0052d",
-    "updateTime": ISODate("2023-02-08T02:34:08.602Z"),
-    "createTime": ISODate("2022-11-28T11:36:17.193Z"),
-    "enable": true,
-    "subject": "节点离线通知"
-}, {
-    "_id": ObjectId("63105f5a69b35a49e396ffe7"),
-    "name": "黑盒扫描任务完成提醒",
-    "code": 2,
-    "type": 3,
-    "content": "【黑盒漏洞扫描系统】\n\n您提交的黑盒漏洞扫描任务【${projectName}】已经完成，共发现 ${total} 漏洞，详情请点击查看 ${url}",
-    "createBy": "5db002504da8ad2e24d0052d",
-    "updateBy": "5db002504da8ad2e24d0052d",
-    "updateTime": ISODate("2023-02-08T02:34:14.450Z"),
-    "createTime": ISODate("2022-09-01T07:29:30.004Z"),
-    "enable": true,
-    "subject": "黑盒扫描器任务完成"
-}, {
-    "_id": ObjectId("63886a2b69b35a7f53fe4da2"),
-    "name": "任务失败通知",
-    "code": 3,
-    "type": 2,
-    "content": "<p>您好，${userName}：</p>\n<p>您创建的扫描项目<strong>【${projectName}】</strong>任务执行失败，点击可查看项目详情：${url}</p>\n<p>失败原因：${err}</p>",
-    "createBy": "",
-    "updateBy": "5db002504da8ad2e24d0052d",
-    "updateTime": ISODate("2022-12-14T06:35:06.999Z"),
-    "createTime": ISODate("2022-12-01T08:47:39.156Z"),
-    "enable": true,
-    "subject": "黑盒扫描器任务失败"
-}, {
-    "_id": ObjectId("6388685969b35a7f53fe4da1"),
-    "name": "任务失败通知",
-    "code": 3,
-    "type": 3,
-    "content": "您好，${userName}：\n\n您创建的扫描项目 【${projectName}】 任务执行失败，点击可查看项目详情：${url}\n失败原因：${err}\n",
-    "createBy": "",
-    "updateBy": "5db002504da8ad2e24d0052d",
-    "updateTime": ISODate("2023-02-08T02:34:21.017Z"),
-    "createTime": ISODate("2022-12-01T08:39:53.039Z"),
-    "enable": true,
-    "subject": "任务失败"
-}]);
+        "_id": ObjectId("6310636a69b35a49e396ffe8"),
+        "name": "黑盒扫描器任务完成提醒",
+        "code": 2,
+        "type": 2,
+        "content": "<h3>Hi, ${userName} 您好!</h3>\n<div style=\"line-height: 30pt; font-size: 12pt;\">\n<p>您提交的黑盒漏洞扫描任务【${projectName}】已经完成，共发现 ${total} 漏洞，其中严重漏洞 ${critical} 个、 高危漏洞${high}个、中危漏洞${medium}个、低危${low}个。</p>\n<p>任务详情点击：${url}，请您尽快处理</p>\n</div>",
+        "createBy": "5db002504da8ad2e24d0052d",
+        "updateBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2023-02-16T10:59:48.833Z"),
+        "createTime": ISODate("2022-09-01T07:46:50.913Z"),
+        "enable": true,
+        "subject": "黑盒扫描器任务完成"
+    }, {
+        "_id": ObjectId("63849d3169b35abc2d329504"),
+        "name": "agent离线通知",
+        "code": 1,
+        "type": 3,
+        "content": "【黑盒漏洞扫描系统-节点离线告警】\n\n节点IP：${ip}\n节点类型：${type}\n节点环境：${group}\n离线时间：${time}\n",
+        "createBy": "5db002504da8ad2e24d0052d",
+        "updateBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2023-02-08T02:34:08.602Z"),
+        "createTime": ISODate("2022-11-28T11:36:17.193Z"),
+        "enable": true,
+        "subject": "节点离线通知"
+    }, {
+        "_id": ObjectId("63105f5a69b35a49e396ffe7"),
+        "name": "黑盒扫描任务完成提醒",
+        "code": 2,
+        "type": 3,
+        "content": "【黑盒漏洞扫描系统】\n\n您提交的黑盒漏洞扫描任务【${projectName}】已经完成，共发现 ${total} 漏洞，详情请点击查看 ${url}",
+        "createBy": "5db002504da8ad2e24d0052d",
+        "updateBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2023-02-08T02:34:14.450Z"),
+        "createTime": ISODate("2022-09-01T07:29:30.004Z"),
+        "enable": true,
+        "subject": "黑盒扫描器任务完成"
+    }, {
+        "_id": ObjectId("63886a2b69b35a7f53fe4da2"),
+        "name": "任务失败通知",
+        "code": 3,
+        "type": 2,
+        "content": "<p>您好，${userName}：</p>\n<p>您创建的扫描项目<strong>【${projectName}】</strong>任务执行失败，点击可查看项目详情：${url}</p>\n<p>失败原因：${err}</p>",
+        "createBy": "",
+        "updateBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2022-12-14T06:35:06.999Z"),
+        "createTime": ISODate("2022-12-01T08:47:39.156Z"),
+        "enable": true,
+        "subject": "黑盒扫描器任务失败"
+    }, {
+        "_id": ObjectId("6388685969b35a7f53fe4da1"),
+        "name": "任务失败通知",
+        "code": 3,
+        "type": 3,
+        "content": "您好，${userName}：\n\n您创建的扫描项目 【${projectName}】 任务执行失败，点击可查看项目详情：${url}\n失败原因：${err}\n",
+        "createBy": "",
+        "updateBy": "5db002504da8ad2e24d0052d",
+        "updateTime": ISODate("2023-02-08T02:34:21.017Z"),
+        "createTime": ISODate("2022-12-01T08:39:53.039Z"),
+        "enable": true,
+        "subject": "任务失败"
+    }]);
 
 
 db.Engine_Config.insert([
@@ -120,8 +121,8 @@ db.Engine_Config.insert([
         "proxyUrl": "",
         "proxySocksUrl": "",
         "maxHostError": 0,
-        "concurrency": 500,
-        "timeout": 10,
+        "concurrency": 100,
+        "timeout": 5,
         "retries": 0,
         "rateLimitMinute": 1000,
         "pageTimeout": 30,
@@ -168,7 +169,7 @@ db.Engine_Config.insert([
         "proxySocksUrl": "",
         "maxHostError": 0,
         "concurrency": 100,
-        "timeout": 10,
+        "timeout": 5,
         "retries": 0,
         "rateLimitMinute": 1000,
         "pageTimeout": 30,

@@ -1,0 +1,80 @@
+version: '3'
+#必须安装redis、mongo、etcd
+services:
+  redis:
+    image: "redis:alpine"
+    command:
+      # redis 密码，需要可修改
+      --requirepass "3d7a6447328dcde6"
+    container_name: ns-redis
+  mongo:
+    image: "mongo:4.2.23"
+    ports:
+      - '27017:27017'
+    command: [--auth]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_DATABASE: NextScan
+      MONGO_USERNAME: NextScan
+      # 数据库NextScan密码
+      MONGO_PASSWORD: 56074e26d5a39aad
+    volumes:
+      - ./mongo/init:/docker-entrypoint-initdb.d
+      - ./mongo/data:/data/db
+    container_name: ns-mongo
+  etcd:
+    image: "bitnami/etcd:3.5.6"
+    environment:
+      # etcd root用户密码
+      - ETCD_ROOT_PASSWORD=0117be99f79bf9e2
+    container_name: ns-etcd
+  minio:
+    image: minio/minio:RELEASE.2021-04-18T19-26-29Z
+    container_name: ns-minio
+    ports:
+      - 9000:9000
+    volumes:
+      - ./minio/data:/data
+    environment:
+      MINIO_ACCESS_KEY: "vi75e"
+      MINIO_SECRET_KEY: "hFimqbrlBE"
+    command: server /data
+    restart: always
+  createbuckets:
+    image: minio/mc
+    container_name: ns-minio-buckets
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      sleep 10;
+      /usr/bin/mc alias set myminio http://ns-minio:9000 vi75e hFimqbrlBE;
+      /usr/bin/mc mb myminio/next-scan;
+      /usr/bin/mc anonymous set download myminio/next-scan;
+      exit 0;
+      "
+  web:
+    image: "lysec/ns-admin:latest"
+    ports:
+      - "80:80"
+    depends_on:
+      - redis
+      - mongo
+      - etcd
+      - minio
+      - createbuckets
+    container_name: ns-admin
+  #    volumes:
+  #      # 配置文件
+  #    - ./conf.ini:/next-scan/conf.ini
+  scan:
+    image: "lysec/ns-scan:latest"
+    depends_on:
+      - web
+    container_name: ns-scan
+  craw:
+    image: "lysec/ns-craw:latest"
+    depends_on:
+      - web
+    container_name: ns-craw
